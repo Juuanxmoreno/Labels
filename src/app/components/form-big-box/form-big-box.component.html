@@ -1,0 +1,29 @@
+<div class="page-container">
+    <div class="card">
+        <div class="card-header"><i class="bi bi-box-seam"><br>Caja Amarilla</i></div>
+        <div class="card-body">
+            <form (ngSubmit)="submitForm()" [formGroup]="myForm">
+                <div class="form-group">
+                    <input type="text" id="id-caja-amarilla" formControlName="idCajaAmarilla"
+                        placeholder="ID Caja Amarilla" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="medidas" formControlName="medidas" placeholder="Medidas" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="peso-caja-vacia" formControlName="pesoCajaVacia"
+                        placeholder="Peso de la caja vacía" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="peso-caja-llena" formControlName="pesoCajaLlena"
+                        placeholder="Peso de la caja llena" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="cantidad-cajas-blancas" formControlName="cantidadCajasBlancas"
+                        placeholder="Cantidad de cajas blancas" required>
+                </div>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+</div>

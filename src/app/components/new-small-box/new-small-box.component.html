@@ -1,0 +1,41 @@
+<div class="page-container">
+    <div class="card">
+        <div class="card-header"><i class="bi bi-box2"><br>Caja Blanca</i></div>
+        <div class="card-body">
+            <form (ngSubmit)="submitForm()" [formGroup]="myForm">
+                <div class="form-group">
+                    <input type="text" id="id-caja-blanca" formControlName="idCajaBlanca" placeholder="ID Caja Blanca"
+                        required>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="peso-caja-blanca-sin-lentes" formControlName="pesoCajaBlancaSinLentes"
+                        placeholder="Peso Caja Blanca sin Lentes" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="peso-caja-blanca-con-lentes" formControlName="pesoCajaBlancaConLentes"
+                        placeholder="Peso Caja Blanca con Lentes" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="peso-especifico-lente" formControlName="pesoEspecificoLente"
+                        placeholder="Peso específico del lente" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="medidas-caja-blanca" formControlName="medidasCajaBlanca"
+                        placeholder="Medidas Caja Blanca" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="modelo-lente" formControlName="modeloLente" placeholder="Modelo del lente"
+                        required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="color" formControlName="color" placeholder="Color" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="cantidad-lentes" formControlName="cantidadLentes"
+                        placeholder="Cantidad de lentes" required>
+                </div>
+                <button type="submit"><i class="bi bi-box2-fill"></i></button>
+            </form>
+        </div>
+    </div>
+</div>
