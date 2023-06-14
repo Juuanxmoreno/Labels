@@ -1,41 +1,48 @@
 <div class="page-container">
     <div class="card">
-        <div class="card-header"><i class="bi bi-box2"><br>Caja Blanca</i></div>
+        <div class="card-header"><i class="bi bi-box-seam"></i> Cajas Blancas</div>
         <div class="card-body">
-            <form (ngSubmit)="submitForm()" [formGroup]="myForm">
-                <div class="form-group">
-                    <input type="text" id="id-caja-blanca" formControlName="idCajaBlanca" placeholder="ID Caja Blanca"
-                        required>
+            <form [formGroup]="myForm" (ngSubmit)="submitForm()">
+                <div formArrayName="cajasBlancas">
+                    <div *ngFor="let cajaBlanca of cajasBlancasArray.controls; let i = index" [formGroupName]="i">
+                        <div class="caja-blancas-item">
+                            <div class="form-group">
+                                <input type="text" formControlName="idCajaBlanca" placeholder="ID Caja Blanca" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="number" formControlName="pesoSinLentes"
+                                    placeholder="Peso Caja Blanca sin Lentes" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="number" formControlName="pesoConLentes"
+                                    placeholder="Peso Caja Blanca con Lentes" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="number" formControlName="pesoEspecificoLente"
+                                    placeholder="Peso Especifico del Lente" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" formControlName="medidas" placeholder="Medidas Caja Blanca" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" formControlName="modeloLente" placeholder="Modelo del Lente"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" formControlName="color" placeholder="Color" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="number" formControlName="cantidadLentes" placeholder="Cantidad de Lentes"
+                                    required>
+                            </div>
+                            <button type="button" (click)="eliminarCajaBlanca(i)" class="btn-remove">Eliminar</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <input type="number" id="peso-caja-blanca-sin-lentes" formControlName="pesoCajaBlancaSinLentes"
-                        placeholder="Peso Caja Blanca sin Lentes" required>
-                </div>
-                <div class="form-group">
-                    <input type="number" id="peso-caja-blanca-con-lentes" formControlName="pesoCajaBlancaConLentes"
-                        placeholder="Peso Caja Blanca con Lentes" required>
-                </div>
-                <div class="form-group">
-                    <input type="number" id="peso-especifico-lente" formControlName="pesoEspecificoLente"
-                        placeholder="Peso específico del lente" required>
-                </div>
-                <div class="form-group">
-                    <input type="text" id="medidas-caja-blanca" formControlName="medidasCajaBlanca"
-                        placeholder="Medidas Caja Blanca" required>
-                </div>
-                <div class="form-group">
-                    <input type="text" id="modelo-lente" formControlName="modeloLente" placeholder="Modelo del lente"
-                        required>
-                </div>
-                <div class="form-group">
-                    <input type="text" id="color" formControlName="color" placeholder="Color" required>
-                </div>
-                <div class="form-group">
-                    <input type="number" id="cantidad-lentes" formControlName="cantidadLentes"
-                        placeholder="Cantidad de lentes" required>
-                </div>
-                <button type="submit"><i class="bi bi-box2-fill"></i></button>
+                <button type="button" (click)="agregarCajaBlanca()" class="btn-add" id="btnA">Añadir Caja Blanca</button>
+                <button type="submit" [disabled]="!myForm.valid" id="btnmrg">Generar PDF</button>
             </form>
+            <button routerLink="" id="btnHome"><i class="bi bi-box-seam-fill"><br>Cerrar Caja Amarilla</i></button>
         </div>
     </div>
 </div>

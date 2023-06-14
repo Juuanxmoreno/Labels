@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray, AbstractControl } from '@angular/forms';
 import jsPDF from 'jspdf';
 
 @Component({
@@ -13,43 +13,69 @@ export class NewSmallBoxComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) {
     this.myForm = this.formBuilder.group({
-      idCajaBlanca: ['', Validators.required],
-      pesoCajaBlancaSinLentes: ['', Validators.required],
-      pesoCajaBlancaConLentes: ['', Validators.required],
-      pesoEspecificoLente: ['', Validators.required],
-      medidasCajaBlanca: ['', Validators.required],
-      modeloLente: ['', Validators.required],
-      color: ['', Validators.required],
-      cantidadLentes: ['', Validators.required]
+      cajasBlancas: this.formBuilder.array([])
     });
   }
 
   ngOnInit() {
   }
 
+  get cajasBlancasArray() {
+    return this.myForm.get('cajasBlancas') as FormArray;
+  }
+
+  agregarCajaBlanca() {
+    const cajaBlanca = this.formBuilder.group({
+      idCajaBlanca: ['', Validators.required],
+      pesoSinLentes: ['', Validators.required],
+      pesoConLentes: ['', Validators.required],
+      pesoEspecificoLente: ['', Validators.required],
+      medidas: ['', Validators.required],
+      modeloLente: ['', Validators.required],
+      color: ['', Validators.required],
+      cantidadLentes: ['', Validators.required]
+    });
+    this.cajasBlancasArray.push(cajaBlanca);
+  }
+
+  eliminarCajaBlanca(index: number) {
+    this.cajasBlancasArray.removeAt(index);
+  }
+
   submitForm() {
     if (this.myForm.valid) {
-      const idCajaBlanca = this.myForm.get('idCajaBlanca')?.value;
-      const pesoCajaBlancaSinLentes = this.myForm.get('pesoCajaBlancaSinLentes')?.value;
-      const pesoCajaBlancaConLentes = this.myForm.get('pesoCajaBlancaConLentes')?.value;
-      const pesoEspecificoLente = this.myForm.get('pesoEspecificoLente')?.value;
-      const medidasCajaBlanca = this.myForm.get('medidasCajaBlanca')?.value;
-      const modeloLente = this.myForm.get('modeloLente')?.value;
-      const color = this.myForm.get('color')?.value;
-      const cantidadLentes = this.myForm.get('cantidadLentes')?.value;
+      const doc = new jsPDF('p', 'mm', 'a4'); // Ajustar el tamaño de página según tus necesidades
+      const cajasBlancas = this.cajasBlancasArray.controls;
+      let offsetY = 10;
 
-      const doc = new jsPDF();
-      doc.text('ID Caja Blanca: ' + idCajaBlanca, 10, 10);
-      doc.text('Peso de la caja blanca sin lentes: ' + pesoCajaBlancaSinLentes + ' gramos', 10, 20);
-      doc.text('Peso de la caja blanca con lentes: ' + pesoCajaBlancaConLentes + ' gramos', 10, 30);
-      doc.text('Peso específico del lente: ' + pesoEspecificoLente, 10, 40);
-      doc.text('Medidas de la caja blanca: ' + medidasCajaBlanca, 10, 50);
-      doc.text('Modelo del lente: ' + modeloLente, 10, 60);
-      doc.text('Color: ' + color, 10, 70);
-      doc.text('Cantidad de lentes: ' + cantidadLentes, 10, 80);
+      cajasBlancas.forEach((cajaBlanca: AbstractControl) => {
+        const idCajaBlanca = cajaBlanca.get('idCajaBlanca')?.value;
+        const pesoSinLentes = cajaBlanca.get('pesoSinLentes')?.value;
+        const pesoConLentes = cajaBlanca.get('pesoConLentes')?.value;
+        const pesoEspecificoLente = cajaBlanca.get('pesoEspecificoLente')?.value;
+        const medidas = cajaBlanca.get('medidas')?.value;
+        const modeloLente = cajaBlanca.get('modeloLente')?.value;
+        const color = cajaBlanca.get('color')?.value;
+        const cantidadLentes = cajaBlanca.get('cantidadLentes')?.value;
 
-      doc.save(idCajaBlanca + '.pdf');
+        doc.text('ID Caja Blanca: ' + idCajaBlanca, 10, offsetY);
+        doc.text('Peso Caja Blanca sin Lentes: ' + pesoSinLentes + 'gramos', 10, offsetY + 10);
+        doc.text('Peso Caja Blanca con Lentes: ' + pesoConLentes + 'gramos', 10, offsetY + 20);
+        doc.text('Peso especifico del lente: ' + pesoEspecificoLente + 'gramos', 10, offsetY + 30);
+        doc.text('Medidas Caja Blanca: ' + medidas, 10, offsetY + 40);
+        doc.text('Modelo del lente: ' + modeloLente, 10, offsetY + 50);
+        doc.text('Color: ' + color, 10, offsetY + 60);
+        doc.text('Cantidad de lentes: ' + cantidadLentes, 10, offsetY + 70);
 
+        offsetY += 90;
+
+        if (offsetY >= doc.internal.pageSize.height - 20) {
+          doc.addPage();
+          offsetY = 10;
+        }
+      });
+
+      doc.save('cajas_blancas.pdf');
     }
   }
 }
