@@ -1,4 +1,5 @@
 .centered-container {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -12,8 +13,16 @@
     padding: 25px 50px;
     border: none;
     border-radius: 8px;
+    margin-bottom: 20px;
 }
-i {
-    font-size: 2rem;
-    color: #e9ff26;
+
+.corner-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #333;
+    color: #f2f2f2;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
 }

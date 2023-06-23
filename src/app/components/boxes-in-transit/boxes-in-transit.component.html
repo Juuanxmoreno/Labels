@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-xl-4" *ngFor="let caja of cajasAmarillas">
+            <div class="card mb-3 custom-card">
+                <div class="card-body">
+                    <h3 class="card-title">{{ caja.nombreCajaAmarilla }}</h3>
+                    <button class="btn btn-primary" (click)="verDetalles(caja)">Ver detalles</button>
+                </div>
+                <div class="card-footer" *ngIf="caja.mostrarDetalles">
+                    <p><strong>Alto:</strong> {{ caja.alto }}</p>
+                    <p><strong>Ancho:</strong> {{ caja.ancho }}</p>
+                    <p><strong>Profundidad:</strong> {{ caja.profundidad }}</p>
+                    <p><strong>Peso:</strong> {{ caja.peso }}</p>
+                    <p><strong>Costo:</strong> {{ caja.costo }}</p>
+                    <p><strong>Transporte Aéreo:</strong> {{ caja.transporteAereo }}</p>
+                    <h4>Cajas Blancas:</h4>
+                    <ul>
+                        <li *ngFor="let cajaBlanca of caja.cajasBlancas">
+                            <p><strong>Nombre Caja Blanca:</strong> {{ cajaBlanca.nombreCajaBlanca }}</p>
+                            <p><strong>Peso Caja Blanca:</strong> {{ cajaBlanca.pesoCajaBlanca }}</p>
+                            <p><strong>Alto Caja Blanca:</strong> {{ cajaBlanca.altoCajaBlanca }}</p>
+                            <p><strong>Ancho Caja Blanca:</strong> {{ cajaBlanca.anchoCajaBlanca }}</p>
+                            <p><strong>Profundidad Caja Blanca:</strong> {{ cajaBlanca.profundidadCajaBlanca }}</p>
+                            <p><strong>Modelo Lente:</strong> {{ cajaBlanca.modeloLente }}</p>
+                            <p><strong>Peso Lente:</strong> {{ cajaBlanca.pesoLente }}</p>
+                            <p><strong>Color Lente:</strong> {{ cajaBlanca.colorLente }}</p>
+                            <p><strong>Cantidad Lentes:</strong> {{ cajaBlanca.cantidadLentes }}</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

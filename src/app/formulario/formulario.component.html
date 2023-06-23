@@ -1,0 +1,96 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Crear Caja Amarilla</h5>
+        <form (ngSubmit)="submit()">
+            <div class="form-group">
+                <label for="nombreCajaAmarilla">Nombre Caja Amarilla:</label>
+                <input type="text" class="form-control" id="nombreCajaAmarilla"
+                    [(ngModel)]="cajaAmarilla.nombreCajaAmarilla" name="nombreCajaAmarilla">
+            </div>
+            <div class="form-group">
+                <label for="alto">Alto:</label>
+                <input type="number" class="form-control" id="alto" [(ngModel)]="cajaAmarilla.alto" name="alto">
+            </div>
+            <div class="form-group">
+                <label for="ancho">Ancho:</label>
+                <input type="number" class="form-control" id="ancho" [(ngModel)]="cajaAmarilla.ancho" name="ancho">
+            </div>
+            <div class="form-group">
+                <label for="profundidad">Profundidad:</label>
+                <input type="number" class="form-control" id="profundidad" [(ngModel)]="cajaAmarilla.profundidad"
+                    name="profundidad">
+            </div>
+            <div class="form-group">
+                <label for="peso">Peso:</label>
+                <input type="number" class="form-control" id="peso" [(ngModel)]="cajaAmarilla.peso" name="peso">
+            </div>
+            <div class="form-group">
+                <label for="costo">Costo:</label>
+                <input type="number" class="form-control" id="costo" [(ngModel)]="cajaAmarilla.costo" name="costo">
+            </div>
+            <div class="form-group">
+                <label for="transporteAereo">Transporte Aéreo:</label>
+                <input type="checkbox" class="form-control" id="transporteAereo"
+                    [(ngModel)]="cajaAmarilla.transporteAereo" name="transporteAereo">
+            </div>
+
+            <hr>
+
+            <h5 class="card-title">Cajas Blancas</h5>
+            <div *ngFor="let cajaBlanca of cajasBlancas; let i = index">
+                <h6>Caja Blanca {{ i + 1 }}</h6>
+                <div class="form-group">
+                    <label for="nombreCajaBlanca{{i}}">Nombre Caja Blanca:</label>
+                    <input type="text" class="form-control" id="nombreCajaBlanca{{i}}"
+                        [(ngModel)]="cajaBlanca.nombreCajaBlanca" name="nombreCajaBlanca{{i}}">
+                </div>
+                <div class="form-group">
+                    <label for="pesoCajaBlanca{{i}}">Peso Caja Blanca:</label>
+                    <input type="number" class="form-control" id="pesoCajaBlanca{{i}}"
+                        [(ngModel)]="cajaBlanca.pesoCajaBlanca" name="pesoCajaBlanca{{i}}">
+                </div>
+                <div class="form-group">
+                    <label for="altoCajaBlanca{{i}}">Alto Caja Blanca:</label>
+                    <input type="number" class="form-control" id="altoCajaBlanca{{i}}"
+                        [(ngModel)]="cajaBlanca.altoCajaBlanca" name="altoCajaBlanca{{i}}">
+                </div>
+                <div class="form-group">
+                    <label for="anchoCajaBlanca{{i}}">Ancho Caja Blanca:</label>
+                    <input type="number" class="form-control" id="anchoCajaBlanca{{i}}"
+                        [(ngModel)]="cajaBlanca.anchoCajaBlanca" name="anchoCajaBlanca{{i}}">
+                </div>
+                <div class="form-group">
+                    <label for="profundidadCajaBlanca{{i}}">Profundidad Caja Blanca:</label>
+                    <input type="number" class="form-control" id="profundidadCajaBlanca{{i}}"
+                        [(ngModel)]="cajaBlanca.profundidadCajaBlanca" name="profundidadCajaBlanca{{i}}">
+                </div>
+                <div class="form-group">
+                    <label for="modeloLente{{i}}">Modelo Lente:</label>
+                    <input type="text" class="form-control" id="modeloLente{{i}}" [(ngModel)]="cajaBlanca.modeloLente"
+                        name="modeloLente{{i}}">
+                </div>
+                <div class="form-group">
+                    <label for="pesoLente{{i}}">Peso Lente:</label>
+                    <input type="number" class="form-control" id="pesoLente{{i}}" [(ngModel)]="cajaBlanca.pesoLente"
+                        name="pesoLente{{i}}">
+                </div>
+                <div class="form-group">
+                    <label for="colorLente{{i}}">Color Lente:</label>
+                    <input type="text" class="form-control" id="colorLente{{i}}" [(ngModel)]="cajaBlanca.colorLente"
+                        name="colorLente{{i}}">
+                </div>
+                <div class="form-group">
+                    <label for="cantidadLentes{{i}}">Cantidad Lentes:</label>
+                    <input type="number" class="form-control" id="cantidadLentes{{i}}"
+                        [(ngModel)]="cajaBlanca.cantidadLentes" name="cantidadLentes{{i}}">
+                </div>
+            </div>
+
+            <button  type="button" class="btn btn-primary" (click)="agregarCajaBlanca()">Añadir Caja Blanca</button>
+
+            <hr>
+
+            <button type="submit" class="btn btn-success">Guardar</button>
+        </form>
+    </div>
+</div>

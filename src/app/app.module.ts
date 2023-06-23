@@ -8,6 +8,10 @@ import { HomeComponent } from './components/home/home.component';
 import { NewBigBoxComponent } from './components/new-big-box/new-big-box.component';
 import { FormBigBoxComponent } from './components/form-big-box/form-big-box.component';
 import { NewSmallBoxComponent } from './components/new-small-box/new-small-box.component';
+import { BoxesInTransitComponent } from './components/boxes-in-transit/boxes-in-transit.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormularioComponent } from './formulario/formulario.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,12 +19,16 @@ import { NewSmallBoxComponent } from './components/new-small-box/new-small-box.c
     HomeComponent,
     NewBigBoxComponent,
     FormBigBoxComponent,
-    NewSmallBoxComponent
+    NewSmallBoxComponent,
+    BoxesInTransitComponent,
+    FormularioComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
