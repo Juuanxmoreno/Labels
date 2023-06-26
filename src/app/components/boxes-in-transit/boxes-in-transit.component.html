@@ -1,34 +1,44 @@
-<div class="container">
-    <div class="row">
-        <div class="col-lg-6 col-xl-4" *ngFor="let caja of cajasAmarillas">
-            <div class="card mb-3 custom-card">
-                <div class="card-body">
-                    <h3 class="card-title">{{ caja.nombreCajaAmarilla }}</h3>
-                    <button class="btn btn-primary" (click)="verDetalles(caja)">Ver detalles</button>
-                </div>
-                <div class="card-footer" *ngIf="caja.mostrarDetalles">
-                    <p><strong>Alto:</strong> {{ caja.alto }}</p>
-                    <p><strong>Ancho:</strong> {{ caja.ancho }}</p>
-                    <p><strong>Profundidad:</strong> {{ caja.profundidad }}</p>
-                    <p><strong>Peso:</strong> {{ caja.peso }}</p>
-                    <p><strong>Costo:</strong> {{ caja.costo }}</p>
-                    <p><strong>Transporte Aéreo:</strong> {{ caja.transporteAereo }}</p>
-                    <h4>Cajas Blancas:</h4>
+<div class="sticky-header">
+    <div class="filter-buttons">
+        <button (click)="filtrarCajas('aereo')" [class.selected]="transporteSeleccionado === 'aereo'">Aereo</button>
+        <button (click)="filtrarCajas('maritimo')"
+            [class.selected]="transporteSeleccionado === 'maritimo'">Marítimo</button>
+    </div>
+</div>
+
+<div class="card-container">
+    <ng-container *ngFor="let caja of cajasAmarillas">
+        <div class="card"
+            *ngIf="filtroTransporte === 'todos' || (filtroTransporte === 'aereo' && caja.transporteAereo) || (filtroTransporte === 'maritimo' && !caja.transporteAereo)">
+            <div class="card-header">
+                <h4>{{ caja.nombreCajaAmarilla }}<i class="bi bi-box2-fill"></i></h4>
+                <button (click)="toggleDetalles(caja)">{{ obtenerTextoBoton(caja) }}</button>
+            </div>
+            <div class="card-details" *ngIf="caja.mostrarDetalles">
+                <p><b>Alto:</b> {{ caja.alto }} cm</p>
+                <p><b>Ancho:</b> {{ caja.ancho }} cm</p>
+                <p><b>Profundidad:</b> {{ caja.profundidad }} cm</p>
+                <p><b>Peso:</b> {{ caja.peso }} gr</p>
+                <p><b>Costo de envío:</b> {{ caja.costo }}</p>
+                <p style="display: none;"><b>Transporte aéreo:</b> {{ caja.transporteAereo ? 'Sí' : 'No' }}</p>
+                <div *ngIf="caja.cajasBlancas && caja.cajasBlancas.length > 0">
+                    <h5>Cajas blancas<i class="bi bi-box-seam-fill"></i></h5>
                     <ul>
                         <li *ngFor="let cajaBlanca of caja.cajasBlancas">
-                            <p><strong>Nombre Caja Blanca:</strong> {{ cajaBlanca.nombreCajaBlanca }}</p>
-                            <p><strong>Peso Caja Blanca:</strong> {{ cajaBlanca.pesoCajaBlanca }}</p>
-                            <p><strong>Alto Caja Blanca:</strong> {{ cajaBlanca.altoCajaBlanca }}</p>
-                            <p><strong>Ancho Caja Blanca:</strong> {{ cajaBlanca.anchoCajaBlanca }}</p>
-                            <p><strong>Profundidad Caja Blanca:</strong> {{ cajaBlanca.profundidadCajaBlanca }}</p>
-                            <p><strong>Modelo Lente:</strong> {{ cajaBlanca.modeloLente }}</p>
-                            <p><strong>Peso Lente:</strong> {{ cajaBlanca.pesoLente }}</p>
-                            <p><strong>Color Lente:</strong> {{ cajaBlanca.colorLente }}</p>
-                            <p><strong>Cantidad Lentes:</strong> {{ cajaBlanca.cantidadLentes }}</p>
+                            <p>ID: {{ cajaBlanca.nombreCajaBlanca }}</p>
+                            <p>Peso caja vacia: {{ cajaBlanca.pesoCajaBlancaVacia }} gr</p>
+                            <p>Peso: {{ cajaBlanca.pesoCajaBlanca }} gr</p>
+                            <p>Alto: {{ cajaBlanca.altoCajaBlanca }} cm</p>
+                            <p>Ancho: {{ cajaBlanca.anchoCajaBlanca }} cm</p>
+                            <p>Profundidad: {{ cajaBlanca.profundidadCajaBlanca }} cm</p>
+                            <p>Modelo lente: {{ cajaBlanca.modeloLente }}</p>
+                            <p>Peso lente: {{ cajaBlanca.pesoLente }} gr</p>
+                            <p>Color lente: {{ cajaBlanca.colorLente }}</p>
+                            <p>Cantidad lentes: {{ cajaBlanca.cantidadLentes }}</p>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
-    </div>
+    </ng-container>
 </div>

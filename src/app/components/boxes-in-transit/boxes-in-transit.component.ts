@@ -9,21 +9,32 @@ import { CajaAmarillaService } from 'src/app/service/caja-amarilla.service';
 })
 export class BoxesInTransitComponent implements OnInit {
   cajasAmarillas: CajaAmarilla[] = [];
+  filtroTransporte: 'aereo' | 'maritimo' | 'todos' = 'todos';
+  transporteSeleccionado: 'aereo' | 'maritimo' | null = null;
 
   constructor(private cajaAmarillaService: CajaAmarillaService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.obtenerCajasAmarillas();
   }
 
-  obtenerCajasAmarillas() {
+  obtenerCajasAmarillas(): void {
     this.cajaAmarillaService.obtenerCajasAmarillas()
-      .subscribe(cajas => this.cajasAmarillas = cajas);
+      .subscribe(cajas => {
+        this.cajasAmarillas = cajas;
+      });
   }
 
-  verDetalles(caja: CajaAmarilla) {
+  toggleDetalles(caja: CajaAmarilla): void {
     caja.mostrarDetalles = !caja.mostrarDetalles;
   }
 
+  obtenerTextoBoton(caja: CajaAmarilla): string {
+    return caja.mostrarDetalles ? 'Ocultar' : 'Ver detalles';
+  }
 
+  filtrarCajas(transporte: 'aereo' | 'maritimo' | 'todos'): void {
+    this.filtroTransporte = transporte as 'aereo' | 'maritimo';
+    this.transporteSeleccionado = transporte as 'aereo' | 'maritimo';
+  }
 }

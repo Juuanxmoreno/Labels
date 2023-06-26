@@ -1,0 +1,40 @@
+input {
+    margin: 10px 0px;
+    background-color: #f2f2f2;
+}
+
+.card-title{
+    text-align: center;
+}
+
+.card-body{
+    background-color: #333;
+}
+
+.yellowBox{
+    color: yellow;
+    font-size: x-large;
+}
+
+h5{
+    color: #f2f2f2;
+}
+
+h6 {
+    color: #f2f2f2;
+    cursor: pointer;
+    font-size: large;
+}
+
+#saveBtn{
+    background: forestgreen;
+    color: #f2f2f2;
+    border: none;
+    width: 100px;
+}
+
+#addBtn{
+    background-color: blue;
+    color: #f2f2f2;
+    border: none;
+}

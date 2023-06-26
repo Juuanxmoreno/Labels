@@ -2,11 +2,11 @@ import { CajaBlanca } from "./caja-blanca";
 
 export class CajaAmarilla {
     nombreCajaAmarilla: string;
-    alto: number;
-    ancho: number;
-    profundidad: number;
-    peso: number;
-    costo: number;
+    alto: null;
+    ancho: null;
+    profundidad: null;
+    peso: null;
+    costo: null;
     transporteAereo: boolean;
     cajasBlancas: CajaBlanca[];
 
@@ -14,11 +14,11 @@ export class CajaAmarilla {
 
     constructor(
         nombreCajaAmarilla: string,
-        alto: number,
-        ancho: number,
-        profundidad: number,
-        peso: number,
-        costo: number,
+        alto: null,
+        ancho: null,
+        profundidad: null,
+        peso: null,
+        costo: null,
         transporteAereo: boolean,
         cajasBlancas: CajaBlanca[]
     ) {

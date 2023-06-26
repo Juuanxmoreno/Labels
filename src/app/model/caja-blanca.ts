@@ -1,26 +1,30 @@
 export class CajaBlanca {
     nombreCajaBlanca: string;
-    pesoCajaBlanca: number;
-    altoCajaBlanca: number;
-    anchoCajaBlanca: number;
-    profundidadCajaBlanca: number;
+    pesoCajaBlancaVacia: number | null;
+    pesoCajaBlanca: number | null;
+    altoCajaBlanca: number | null;
+    anchoCajaBlanca: number | null;
+    profundidadCajaBlanca: number | null;
     modeloLente: string;
-    pesoLente: number;
+    pesoLente: number | null;
     colorLente: string;
-    cantidadLentes: number;
-
+    cantidadLentes: number | null;
+    contraido: boolean; // Nueva propiedad agregada
+  
     constructor(
         nombreCajaBlanca: string,
-        pesoCajaBlanca: number,
-        altoCajaBlanca: number,
-        anchoCajaBlanca: number,
-        profundidadCajaBlanca: number,
+        pesoCajaBlancaVacia: number | null,
+        pesoCajaBlanca: number | null,
+        altoCajaBlanca: number | null,
+        anchoCajaBlanca: number | null,
+        profundidadCajaBlanca: number | null,
         modeloLente: string,
-        pesoLente: number,
+        pesoLente: number | null,
         colorLente: string,
-        cantidadLentes: number
+        cantidadLentes: number | null
     ) {
         this.nombreCajaBlanca = nombreCajaBlanca;
+        this.pesoCajaBlancaVacia = pesoCajaBlancaVacia;
         this.pesoCajaBlanca = pesoCajaBlanca;
         this.altoCajaBlanca = altoCajaBlanca;
         this.anchoCajaBlanca = anchoCajaBlanca;
@@ -29,5 +33,6 @@ export class CajaBlanca {
         this.pesoLente = pesoLente;
         this.colorLente = colorLente;
         this.cantidadLentes = cantidadLentes;
+        this.contraido = false; // Inicialmente no contraído
     }
 }

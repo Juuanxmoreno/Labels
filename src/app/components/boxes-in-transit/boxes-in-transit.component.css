@@ -1,4 +1,91 @@
-.custom-card {
+.sticky-header {
+    position: sticky;
+    top: 0;
+    background-color: #f2f2f2;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+} 
+
+.filter-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px; /* Aumenta el margen superior */
+}
+
+.filter-buttons button {
+    position: relative;
+    border: none;
+    background: transparent;
+    color: #333;
+    font-weight: 500;
+    font-size: large;
+    margin-right: 10px; /* Aumenta el margen derecho */
+}
+
+.filter-buttons button.selected:before {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
     width: 100%;
-    margin: 0 auto;
+    height: 2px;
+    background-color: blue; /* Cambia el color de la línea según tus preferencias */
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.card {
+    flex-basis: calc(100% - 10px);
+    margin: 7px 10px;
+    background-color: #f2f2f2;
+    border-radius: 8px;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background: #333;
+    color: #f2f2f2;
+  }
+  
+  .card-header h4 {
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+.card-header button {
+    margin-left: 10px;
+    background: blue;
+    color: #f2f2f2;
+    border-radius: 3.5px;
+    padding: 5px;
+    border: none;
+    width: 100px;
+}
+
+i{
+    margin-left: 10px;
+    color: yellow;
+}
+
+h5 i {
+    color: #f2f2f2;
+}
+
+h5{
+    padding: 10px;
+    background-color: #333;
+    color: #f2f2f2;
+}
+
+p{
+    margin-left: 10px;
 }
